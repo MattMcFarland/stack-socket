@@ -11,7 +11,7 @@ stack.on('red light', (state, next) => {
 
 stack.on('blue light', (state, next) => {
   console.log('blue light')
-  next(null, state)  
+  next(null, state)
 })
 
 stack.fire('red light')
