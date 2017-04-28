@@ -2,7 +2,7 @@ module.exports = (stack, socketURL, options, done) => {
   const client = io.connect(socketURL, options)
   const patch = require('socketio-wildcard')(io.Manager);
   patch(client);
-  stack.on('ping', (state, next) => {
+  stack.on('*wild', (state, next) => {
     console.log(state._command.path, 'triggered')
     if (client.connected) {
       client.emit(state._command.path, objectOrNull(state.payload))

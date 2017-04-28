@@ -16,8 +16,12 @@ test('stack-socket', t => {
   stack.on('bad-path', (state, next) => {
     console.error(state._command)
     t.fail('bad-path was not fired but code ran anyway')
+    next(null, state)
   })
-    
+  stack.on('pong', (state, next) => {
+    t.pass('data received from server')
+    next(null, state)
+  })
   stack.fire('ping')
   setTimeout(server.close, 1000)
 })
