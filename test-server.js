@@ -1,10 +1,15 @@
-const io = require('socket.io').listen(5000);
+const io = require('socket.io')()
+const middleware = require('socketio-wildcard')();
+io.use(middleware);
 
 io.on('connection', function (socket) {
-  console.log('connection from socket')
   socket.on('ping', data => {
-    io.sockets.emit('pong')
+    io.sockets.emit('pong', `${data}, world!`) 
   })
+  // socket.on('*', packet => {
+  //   console.log(packet)
+  //   io.sockets.emit(packet.data[0], packet.data)
+  // })
 })
 
 module.exports = {
@@ -12,3 +17,5 @@ module.exports = {
     process.exit(0)
   }
 }
+
+io.listen(5000)
