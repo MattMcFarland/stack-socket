@@ -13,7 +13,7 @@ stackSocket(stack, socketURL, options)
 
 test('stack-socket', t => {
   t.test('can send and receive data', t => {
-    stack.on('/socket/ping', (state, next) => {
+    stack.on('/socket/bing', (state, next) => {
       t.pass('data sent to server')
       next(null, state)
     })
@@ -23,7 +23,7 @@ test('stack-socket', t => {
       t.end()
       server.close()
     })
-    stack.fire('/socket/ping', { payload: 'hello'})
+    stack.fire('/socket/bing', { payload: 'hello'})
   })
 })
 

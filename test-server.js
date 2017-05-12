@@ -3,7 +3,7 @@ const middleware = require('socketio-wildcard')();
 io.use(middleware);
 
 io.on('connection', function (socket) {
-  socket.on('ping', data => {
+  socket.on('bing', data => {
     io.sockets.emit('pong', `${data}, world!`) 
   })
   // socket.on('*', packet => {
